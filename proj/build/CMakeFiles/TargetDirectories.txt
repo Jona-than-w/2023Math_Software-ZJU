@@ -1,0 +1,10 @@
+/home/dengmaolin/Templates/math-soft/final/build/CMakeFiles/rebuild_cache.dir
+/home/dengmaolin/Templates/math-soft/final/build/CMakeFiles/edit_cache.dir
+/home/dengmaolin/Templates/math-soft/final/build/CMakeFiles/strip_comments.dir
+/home/dengmaolin/Templates/math-soft/final/build/CMakeFiles/distclean.dir
+/home/dengmaolin/Templates/math-soft/final/build/CMakeFiles/runclean.dir
+/home/dengmaolin/Templates/math-soft/final/build/CMakeFiles/release.dir
+/home/dengmaolin/Templates/math-soft/final/build/CMakeFiles/debug.dir
+/home/dengmaolin/Templates/math-soft/final/build/CMakeFiles/run.dir
+/home/dengmaolin/Templates/math-soft/final/build/CMakeFiles/info.dir
+/home/dengmaolin/Templates/math-soft/final/build/CMakeFiles/step-3.dir

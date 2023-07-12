@@ -1,0 +1,106 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{setspace}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}      %代码着色宏包
+
+\usepackage{amsmath}
+\usepackage{amssymb}\usepackage{mathabx}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[mathscr]{eucal}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subfigure}
+\CTEXsetup[format={\Large\bfseries}]{section}
+
+\title{数学软件项目作业}
+\author{3200106115 邓茂林}
+\date{July 2023}
+
+\begin{document}
+
+\maketitle
+\section{工作内容}
+step-3主要工作内容是求解
+\begin{align*}
+  -\Delta u &= f \qquad\qquad & \text{in}\ \Omega,
+  \\
+  u &= 0 \qquad\qquad & \text{on}\ \partial\Omega.
+\end{align*}
+其中$\Omega=[-1,1]^2$,$f(\mathbf x)=1$.\par
+如果$\varphi$ 是$H^1$ 中的边值为零的测试函数,通过对以下公式分部积分
+\begin{align*}
+  -\int_\Omega \varphi \Delta u = \int_\Omega \varphi f.
+\end{align*}
+得到\begin{align*}
+  (\nabla\varphi, \nabla u)
+   = (\varphi, f),
+\end{align*}
+.问题是寻找$u$ 使得上式对所有符合要求的$\varphi$ 都成立.\par
+通过step-1,step-2,我们能够实现三角形划分和形函数定义,分解函数形式为:$u_h(\mathbf x)=\sum_j U_j \varphi_j(\mathbf
+x)$.则希望\begin{align*}
+  (\nabla\varphi_i, \nabla u_h)
+   = (\varphi_i, f),
+   \qquad\qquad
+   i=0\ldots N-1.
+\end{align*}
+故
+\begin{align*}
+  (\nabla\varphi_i, \nabla u_h)
+  &= \left(\nabla\varphi_i, \nabla \Bigl[\sum_j U_j \varphi_j\Bigr]\right)
+\\
+  &= \sum_j \left(\nabla\varphi_i, \nabla \left[U_j \varphi_j\right]\right)
+\\
+  &= \sum_j \left(\nabla\varphi_i, \nabla \varphi_j \right) U_j.
+\end{align*}
+
+故写作矩阵形式是\begin{align*}
+  A U = F,
+\end{align*}
+其中\begin{align*}
+  A_{ij} &= (\nabla\varphi_i, \nabla \varphi_j),
+  \\
+  F_i &= (\varphi_i, f).
+\end{align*}
+为了求得积分,使用权数插值,即记\begin{align*}
+    A_{ij} &= (\nabla\varphi_i, \nabla \varphi_j)
+    = \sum_{K \in {\mathbb T}} \int_K \nabla\varphi_i \cdot \nabla \varphi_j,
+    \\
+    F_i &= (\varphi_i, f)
+    = \sum_{K \in {\mathbb T}} \int_K \varphi_i f,
+  \end{align*}
+  我们使用\begin{align*}
+    A^K_{ij} &=
+    \int_K \nabla\varphi_i \cdot \nabla \varphi_j
+    \approx
+    \sum_q \nabla\varphi_i(\mathbf x^K_q) \cdot \nabla
+    \varphi_j(\mathbf x^K_q) w_q^K,
+    \\
+    F^K_i &=
+    \int_K \varphi_i f
+    \approx
+    \sum_q \varphi_i(\mathbf x^K_q) f(\mathbf x^K_q) w^K_q,
+  \end{align*}
+  来估计.\par
+  下面介绍线性方程组的解法,
+高斯消去法的复杂度是$O(N^3) $ ,过大.我们使用共轭梯度法,可以迭代收敛我们的解,复杂度是$O(N^2)$.\newpage
+\section{程序内容}
+程序求解的问题是 
+\begin{align*}
+  -\Delta u &= 1  & \text{in}\ \Omega,
+  \\
+  u &= 0  & \text{on}\ \partial\Omega.
+\end{align*}
+其中$\Omega=[-1,1]^2$.
+求解结果如图
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{output.eps}
+    \caption{温度图}
+    \label{fig:enter-label}
+\end{figure}
+
+
+\end{document}
